@@ -1,0 +1,23 @@
+{
+  "name": "sticknotes",
+  "version": "1.0.0",
+  "description": "Desenvolvimento de cadastro clientes usando electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabrielYago10/cadastro-.git"
+  },
+  "author": "Gabriel Yago",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GabrielYago10/cadastro/issues"
+  },
+  "homepage": "https://github.com/GabrielYago10/cadastro#readme",
+  "devDependencies": {
+    "electron": "^35.0.0"
+  }
+}
