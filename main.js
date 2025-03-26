@@ -1,43 +1,24 @@
 console.log("Electron - Processo principal")
 
-// Importação dos recurso do fremework
-//app (aplicação)
-//BrowserWindow (Criação da janela)
-//nativeTheme (definir tema claro ou escuro)
-//Menu (definir um menu personalizado )
-//shell (acessar links externos no navegador padrão)
-const { app, BrowserWindow, nativeTheme, Menu, shell } = require('electron/main')
+const { app, BrowserWindow, nativeTheme, Menu, shell, ipcMain } = require('electron')
 
-//Janela principal
 let win
 const createWindow = () => {
-  //definindo tema da janela claro ou escuro
-  nativeTheme.themeSource = 'light' 
-   win = new BrowserWindow({
+  nativeTheme.themeSource = 'light'
+
+  win = new BrowserWindow({
     width: 1010,
     height: 720,
-    //frame: false,
-    //resizable: false,
-    //minimizable: false,
-    //closable: false,
-    //autoHideMenuBar: true
   })
 
-  // Carregar o menu personalizado 
-  // Atencão! antes importar menu 
   Menu.setApplicationMenu(Menu.buildFromTemplate(template))
-
-  // carregar o document html na janela 
   win.loadFile('./src/views/index.html')
 }
 
-// Janela sobre
 let about
 function aboutWindow() {
-  nativeTheme.themeSource='light'
-  // obter a janela principal 
+  nativeTheme.themeSource = 'light'
   const mainWindow = BrowserWindow.getFocusedWindow()
-  // Validação (se existir a janela principal)
   if (mainWindow) {
     about = new BrowserWindow({
       width: 320,
@@ -45,22 +26,16 @@ function aboutWindow() {
       autoHideMenuBar: true,
       resizable: false,
       minimizable: false,
-      // estabelecer uma relação hierarquica entre as janelas 
       parent: mainWindow,
-      // criar uma janela modal (só retorna a principal quando encerrada)
       modal: true
     })
   }
-  
   about.loadFile('./src/views/sobre.html')
 }
 
-// inicialização da aplicação (assincornismo)
 app.whenReady().then(() => {
   createWindow()
 
-
-  // só ativar a janela principal se nenhuma outra outra estiver ativa
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow()
@@ -68,17 +43,14 @@ app.whenReady().then(() => {
   })
 })
 
-// se o sistema não for MAC encerrar a aplicação quando a janela for fechada  
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
 })
 
-// Reduzir a verbozidade de logs não criticas (devetools)
-app.commandLine.appendSwitch('log-level','3')
+app.commandLine.appendSwitch('log-level', '3')
 
-//templete do menu 
 const template = [
   {
     label: 'Cadastro',
@@ -89,14 +61,14 @@ const template = [
       {
         label: 'Sair',
         accelerator: 'Alt+F4',
-        click: () =>app.quit()
+        click: () => app.quit()
       }
     ]
   },
   {
     label: 'Relatório',
     submenu: [
-         {
+      {
         type: 'separator'
       },
       {
@@ -105,14 +77,14 @@ const template = [
     ]
   },
   {
-    label: 'ferramentas',
+    label: 'Ferramentas',
     submenu: [
       {
         label: 'Aplicar zoom',
         role: 'zoomIn'
       },
       {
-        label: 'reduzir',
+        label: 'Reduzir',
         role: 'zoomOut'
       },
       {
@@ -132,7 +104,7 @@ const template = [
     label: 'Ajuda',
     submenu: [
       {
-        label: 'Repositorio', 
+        label: 'Repositório',
         click: () => shell.openExternal('https://github.com/GabrielYago10/cadastro-.git')
       },
       {
@@ -142,3 +114,12 @@ const template = [
     ]
   }
 ]
+
+// Ouvir o evento de cadastro de cliente do processo de renderização
+ipcMain.on('cadastrar-cliente', (event, dados) => {
+  console.log('Cliente cadastrado:', dados)
+
+  // Aqui você pode adicionar a lógica para salvar os dados em um banco de dados ou arquivo
+  // Exemplo:
+  // fs.appendFileSync('clientes.json', JSON.stringify(dados) + '\n')
+})

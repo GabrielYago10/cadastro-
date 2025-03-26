@@ -1,0 +1,110 @@
+/* Estilos do Body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilos do Container */
+.container {
+    width: 100%; /* Agora ocupa 100% da largura disponível */
+    max-width: 1000px; /* Aumentando a largura máxima para 1000px */
+    background-color: #ffffff;
+    padding: 30px; /* Aumentando o padding para um pouco mais de espaçamento interno */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Grupos de campos */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Estilo das labels */
+label {
+    font-size: 18px; /* Aumentando o tamanho das labels para mais destaque */
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Estilo dos campos de input */
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    width: 100%;
+    padding: 5px; /* Aumentando o padding para dar mais espaço ao texto */
+    font-size: 18px; /* Aumentando o tamanho da fonte para maior visibilidade */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 5px;
+}
+
+/* Ajuste nos campos quando estão em foco */
+input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Estilos para a mensagem de erro */
+small {
+    font-size: 14px;
+    color: gray;
+}
+
+/* Estilo dos campos em linha */
+.form-inline {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px; /* Aumentando o gap entre os campos */
+}
+
+.input-group {
+    flex: 1;
+}
+
+/* Botão */
+/* Botão */
+button {
+    width: auto; /* O botão vai ajustar seu tamanho conforme o conteúdo */
+    padding: 12px 24px; /* Diminuindo o padding para um botão menor */
+    font-size: 16px; /* Font-size menor para o botão */
+    color: #fff;
+    background-color: #56e66e;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #4bbf5c; /* Tom mais escuro no hover */
+    transform: translateY(-2px); /* Efeito sutil de elevação */
+}
+
+button:active {
+    transform: translateY(0); /* Retorna ao estado normal ao clicar */
+}
+.btn-limpar {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.1rem;
+    background-color: #dc3545; /* Vermelho para indicar ação de limpar */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-limpar:hover {
+    background-color: #c82333;
+}
+
+
